@@ -1,6 +1,6 @@
 <template>
   <div class="form" role="form" aria-label="Barra de busca de pokémon">
-    <input type="text" placeholder=" ex.: Pikachu" v-model="pokemon"/>
+    <input type="text" placeholder=" ex.: pikachu" v-model="pokemon"/>
     <button @click="search">
       <span class="icon">
         <i class="fas fa-search"></i>
