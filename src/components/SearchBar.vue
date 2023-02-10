@@ -1,19 +1,32 @@
 <template>
   <div class="form" role="form" aria-label="Barra de busca de pokémon">
-    <input type="text" placeholder=" ex.: Pikachu" />
-    <button>
+    <input type="text" placeholder=" ex.: Pikachu" v-model="pokemon"/>
+    <button @click="search">
       <span class="icon">
         <i class="fas fa-search"></i>
       </span>
     </button>
   </div>
+ 
 </template>
 
 <script lang="ts">
-import { defineComponent } from "vue";
+import { defineComponent} from "vue";
 
 export default defineComponent({
   name: "SearchBar",
+  emits: ["search"],
+  data () {
+    return {
+      pokemon: '',
+    }
+  },
+  methods: {
+    search () {
+      this.$emit('search', this.pokemon)
+    }
+  }
+  
 });
 </script>
 
