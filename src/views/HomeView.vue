@@ -10,7 +10,8 @@
       />
     </div>
     <div v-if="nullPokemon">
-      <p>Busque um pokemon</p>
+      <p v-if="notFound">Busque um pokemon</p>
+      <p v-if="!notFound">{{ message }}</p>
     </div>
   </div>
 </template>
@@ -30,6 +31,7 @@ export default defineComponent({
   },
   data () {
     return {
+      message: '',
       pokemonList: [] as IPokemon[],
       pokemon: Object as unknown as IPokemon,
       secondEvolution: Object as unknown as IPokemon,
@@ -55,12 +57,18 @@ export default defineComponent({
         .then(res => api.get(`/pokemon/${res.data.name}`))
         .then(res => this.thirdEvolution = res.data)
         .then(() => this.thirdEvolution.name !== this.pokemon.name && this.pokemonList.push(this.thirdEvolution))
-        .catch(e => console.log(e))
+        .catch(e =>{
+          this.message = 'Pokemon not found! Check if name is correct.'
+          console.log(e)
+        })
     },
   },
   computed: {
     nullPokemon(): boolean {
       return this.pokemonList?.length === 0 
+    },
+    notFound(): boolean {
+      return this.message === ''
     }
   }
 }
