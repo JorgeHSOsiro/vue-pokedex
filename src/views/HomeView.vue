@@ -48,13 +48,13 @@ export default defineComponent({
         .then(res => api.get(res.data.chain.evolves_to[0]?.species.url))
         .then(res => api.get(`/pokemon/${res.data.name}`))
         .then(res => this.secondEvolution = res.data)
-        .then(() => this.secondEvolution !== undefined && this.pokemonList.push(this.secondEvolution))
+        .then(() => this.secondEvolution.name !== this.pokemon.name && this.pokemonList.push(this.secondEvolution))
         .then(() => api.get(`pokemon-species/${name}`))
         .then((res) => api.get(res.data.evolution_chain.url))
         .then(res => api.get(res.data.chain.evolves_to[0]?.evolves_to[0].species.url))
         .then(res => api.get(`/pokemon/${res.data.name}`))
         .then(res => this.thirdEvolution = res.data)
-        .then(() => this.thirdEvolution !== undefined && this.pokemonList.push(this.thirdEvolution))
+        .then(() => this.thirdEvolution.name !== this.pokemon.name && this.pokemonList.push(this.thirdEvolution))
         .catch(e => console.log(e))
     },
   },
