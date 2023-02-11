@@ -1,7 +1,7 @@
 <template>
   <div class="form" role="form" aria-label="Barra de busca de pokémon">
     <input type="text" placeholder=" ex.: pikachu" v-model="pokemon"/>
-    <button @click="search">
+    <button @click="search" :disabled='isDisabled'>
       <span class="icon">
         <i class="fas fa-search"></i>
       </span>
@@ -25,8 +25,12 @@ export default defineComponent({
     search () {
       this.$emit('search', this.pokemon)
     }
+  },
+  computed: {
+    isDisabled(): boolean {
+      return this.pokemon === ''
+    }
   }
-  
 });
 </script>
 
@@ -47,9 +51,14 @@ export default defineComponent({
     border: none;
     background-color: #3EA6F0;
     color: white;
-    cursor: pointer;
+    
+  }
+  button:disabled {
+    pointer-events: none;
+    opacity: 0.2;
   }
   button:hover {
+    cursor: pointer;
     opacity: 0.8;
   }
 }
