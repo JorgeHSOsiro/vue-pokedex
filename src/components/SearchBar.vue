@@ -33,7 +33,6 @@ export default defineComponent({
 <style lang="scss">
 .form {
   display: flex;
-  align-items: center;
   justify-content: center;
   input {
     padding: 6px;
