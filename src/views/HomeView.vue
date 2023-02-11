@@ -2,7 +2,12 @@
   <div class="home">
     <SearchBar @search="searchPokemon" />
     <div v-if="!nullPokemon" class="pokeList">
-      <PokemonCard v-for="(pokemon, index) in pokemonList" :key="index" :source-image="pokemon?.sprites?.front_default" :pokemon-name="pokemon?.name" />
+      <PokemonCard 
+        v-for="(pokemon, index) in pokemonList" 
+        :key="index" 
+        :source-image="pokemon?.sprites?.front_default" 
+        :pokemon-name="pokemon?.name" 
+      />
     </div>
     <div v-if="nullPokemon">
       <p>Busque um pokemon</p>
@@ -51,7 +56,7 @@ export default defineComponent({
         .then(res => this.thirdEvolution = res.data)
         .then(() => this.thirdEvolution !== undefined && this.pokemonList.push(this.thirdEvolution))
         .catch(e => console.log(e))
-    }
+    },
   },
   computed: {
     nullPokemon(): boolean {
@@ -67,5 +72,9 @@ export default defineComponent({
   display: flex;
   justify-content: center;
   gap: 1rem;
+  @media screen and (max-width: 600px) {
+    align-items: center;
+    flex-direction: column;
+  }
  }
 </style>

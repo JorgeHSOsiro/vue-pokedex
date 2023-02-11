@@ -1,10 +1,12 @@
 <template>
-  <div class="pokeCard">
-    <img :src="sourceImage" alt="imagem do pokemon">
-    <div class="pokeName">
-      <p>{{ pokemonName }}</p>
+  <RouterLink :to="{name: 'details', params: {id: pokemonName}}">
+    <div class="pokeCard" >
+      <img :src="sourceImage" alt="imagem do pokemon">
+      <div class="pokeName">
+        <p>{{ pokemonName }}</p>
+      </div>
     </div>
-  </div>
+  </RouterLink>
 </template>
 
 <script lang="ts">
@@ -24,6 +26,9 @@ export default defineComponent ({
 </script>
   
 <style lang="scss">
+  a {
+    text-decoration: none;
+  }
   .pokeCard {
     display: flex;
     flex-direction: column;
